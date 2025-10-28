@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dev Q&A Hub</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold text-primary" href="#">Dev Q&A Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex mx-auto" role="search" style="max-width: 400px;">
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar perguntas..." aria-label="Pesquisar">
+                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                </form>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tags</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary" href="#">Cadastrar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-5 fw-bold text-dark">Desbloqueie Conhecimento</h1>
+            <p class="fs-5 text-muted">A comunidade para perguntas e respostas de desenvolvedores</p>
+            <div class="mt-4">
+                <a href="#" class="btn btn-primary btn-lg me-2">Fazer uma Pergunta</a>
+                <a href="#" class="btn btn-outline-secondary btn-lg">Explorar Tópicos</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Perguntas Recentes</h2>
+
+                <div class="card question-card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="mb-0"><a href="#" class="text-decoration-none text-primary">Como corrigir um erro CORS no React?</a></h5>
+                            <span class="badge bg-success rounded-pill question-count">508</span>
+                        </div>
+                        <p class="text-muted mb-2">Estou tendo problemas para fazer requisições da minha aplicação React para uma API Node.js. Recebo erros de CORS...</p>
+                        <div>
+                            <a href="#" class="badge-tag">#react</a>
+                            <a href="#" class="badge-tag">#cors</a>
+                            <a href="#" class="badge-tag">#javascript</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card question-card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="mb-0"><a href="#" class="text-decoration-none text-primary">Melhores práticas para proteger uma API Node.js?</a></h5>
+                            <span class="badge bg-success rounded-pill question-count">18</span>
+                        </div>
+                        <p class="text-muted mb-2">Quais middlewares de segurança são essenciais para um ambiente de produção no Express?</p>
+                        <div>
+                            <a href="#" class="badge-tag">#security</a>
+                            <a href="#" class="badge-tag">#nodejs</a>
+                            <a href="#" class="badge-tag">#express</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card question-card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="mb-0"><a href="#" class="text-decoration-none text-primary">Qual a diferença entre 'let' e 'const' e quando usar cada um?</a></h5>
+                            <span class="badge bg-success rounded-pill question-count">36</span>
+                        </div>
+                        <p class="text-muted mb-2">Ainda me confundo sobre quando é realmente necessário usar 'const' e quando 'let' é aceitável em loops.</p>
+                        <div>
+                            <a href="#" class="badge-tag">#javascript</a>
+                            <a href="#" class="badge-tag">#conceitos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="card sidebar-card mb-4 mt-lg-5 mt-0">
+                    <div class="card-header bg-primary text-white">Tags em Tendência</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="badge-tag-sidebar">#javascript</a>
+                            <span class="badge bg-light text-dark">508</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="badge-tag-sidebar">#python</a>
+                            <span class="badge bg-light text-dark">312</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="badge-tag-sidebar">#html-css</a>
+                            <span class="badge bg-light text-dark">156</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="badge-tag-sidebar">#terminal</a>
+                            <span class="badge bg-light text-dark">78</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="#" class="badge-tag-sidebar">#databases</a>
+                            <span class="badge bg-light text-dark">52</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="bg-white border-top mt-5 py-4">
+        <div class="container text-center">
+            <p class="mb-1 text-muted">&copy;<span id="currentYear"></span> Dev Q&A Hub — Todos os direitos reservados.</p>
+            <a href="#" class="text-primary text-decoration-none me-3">Sobre</a>
+            <a href="#" class="text-primary text-decoration-none me-3">Contato</a>
+            <a href="#" class="text-primary text-decoration-none">Política de Privacidade</a>
+        </div>
+    </footer>
+
+    <script>
+    
+            const anoElemento = document.getElementById('currentYear');
+
+            
+            const anoAtual = new Date().getFullYear();
+
+        
+            if (anoElemento) {
+                anoElemento.textContent = anoAtual;
+            }
+</script>
+</body>
+</html>
