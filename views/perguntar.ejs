@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dev Q&A Hub</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold text-primary" href="index.html">Dev Q&A Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    
+     <div class="container">
+        <div class="card">
+        <div class="card-header">
+                <h3>Realize uma pergunta</h3>
+        </div>
+
+        <div class="card-body">
+           
+            <form method="POST" class="form-control"  class="form-control" >
+                <label for="titulo">Título</label>
+                <input name="titulo" type="text" placeholder="Título" class="form-control">
+                <br>
+                <label for="pergunta">Perguntar</label>
+                <textarea name="pergunta" id="" placeholder="Perguntar" class="form-control" ></textarea>
+                <br>
+                <button class=" btn btn-success" >Enviar</button>
+            </form>
+        </div>
+        </div>      
+    </div>
+</body>
+</html>

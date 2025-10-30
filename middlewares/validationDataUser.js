@@ -43,7 +43,7 @@ export const userValidationRules = [
         
     // termos de uso
 
-    body('aceito_termos')
+    body('termos')
         .toBoolean() 
         // verificando se foi aceito
 
@@ -67,6 +67,10 @@ export function validateCheck(req, res, next) {
 
     //preparando erros
     const validationErrors = errors.array();
+
+    // Ponto 2: Verifique os erros detalhados.
+    console.log('Resultado: Erros Encontrados!');
+    console.log('Erros de Validação (validationErrors):', validationErrors);
     
     //preparando dados para serem enviados
     
@@ -74,10 +78,10 @@ export function validateCheck(req, res, next) {
     
    //remover a senha antes de mandar de volta
     delete oldData.senha; 
-    delete oldData.confirmarSenha; 
+    delete oldData.confirmacao_senha; 
     
     //passando os dados de volta
-    return res.render('cadastro', { 
+    return res.render('form-cadastro', { 
         errors: validationErrors, // Array de erros
         oldData: oldData          // Dados preenchidos
     });

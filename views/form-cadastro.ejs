@@ -44,8 +44,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="confirmarSenha" class="form-label fw-semibold">Confirmar Senha</label>
-                <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" placeholder="Repita a senha" required>
+                <label for="confirmacao_senha" class="form-label fw-semibold">Confirmar Senha</label>
+                <input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" placeholder="Repita a senha" required>
             </div>
             
             <div class="form-check mb-3">
@@ -73,16 +73,11 @@
     </footer>
 
     <script>
-    
-            const anoElemento = document.getElementById('currentYear');
-
-            
-            const anoAtual = new Date().getFullYear();
-
-        
-            if (anoElemento) {
-                anoElemento.textContent = anoAtual;
-            }
-</script>
+        const anoElemento = document.getElementById('currentYear');
+        const anoAtual = new Date().getFullYear();
+        if (anoElemento) {
+            anoElemento.textContent = anoAtual;
+        }
+    </script>
 </body>
 </html>

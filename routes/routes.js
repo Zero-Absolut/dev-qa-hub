@@ -1,5 +1,6 @@
 import express from  'express';
 import * as validationMiddleware from '../middlewares/validationDataUser.js';
+import * as inserUser from '../controller/userController.js';
 
 
 const route = express.Router();
@@ -16,6 +17,10 @@ route.get('/form-cadastro', (req, res) => {
     res.render('form-cadastro');
 })
 
-route.post('/form-cadastro', validationMiddleware.userValidationRules, validationMiddleware.validateCheck);
+route.post('/form-cadastro', validationMiddleware.userValidationRules, validationMiddleware.validateCheck, inserUser.DataUser);
+
+route.get('/perguntar', (req, res) => {
+    res.render('perguntar');
+})
 
 export default route;

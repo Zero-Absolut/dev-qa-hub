@@ -1,8 +1,12 @@
 import express from 'express';
 import authRoutes from './routes/routes.js'
+import conn from './database/database.js';
 
 
 
+conn.authenticate()
+  .then(() => console.log("✅ Conectado!"))
+  .catch((err) => console.error(" Erro ao conectar ao MySQL:", err.message));
 
 
 
