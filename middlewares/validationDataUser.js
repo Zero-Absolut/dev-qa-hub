@@ -68,9 +68,7 @@ export function validateCheck(req, res, next) {
     //preparando erros
     const validationErrors = errors.array();
 
-    // Ponto 2: Verifique os erros detalhados.
-    console.log('Resultado: Erros Encontrados!');
-    console.log('Erros de Validação (validationErrors):', validationErrors);
+    
     
     //preparando dados para serem enviados
     

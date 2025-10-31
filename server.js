@@ -1,7 +1,7 @@
 import express from 'express';
 import authRoutes from './routes/routes.js'
 import conn from './database/database.js';
-
+import Usuarios from './models/userModel.js';
 
 
 conn.authenticate()
