@@ -80,7 +80,7 @@ export function validateCheck(req, res, next) {
     
     //passando os dados de volta
     return res.render('form-cadastro', { 
-        errors: validationErrors, // Array de erros
+        erros: validationErrors, // Array de erros
         oldData: oldData          // Dados preenchidos
     });
 }

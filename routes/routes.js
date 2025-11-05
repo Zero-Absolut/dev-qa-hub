@@ -19,6 +19,12 @@ route.get('/form-cadastro', (req, res) => {
 
 route.post('/form-cadastro', validationMiddleware.userValidationRules, validationMiddleware.validateCheck, inserUser.DataUser);
 
+route.get('/login', (req, res) => {
+    res.render('login');
+})
 
+route.post('/login', (req, res) => {
+    
+})
 
 export default route;

@@ -29,23 +29,92 @@
             <h4 class="text-center mb-4 text-primary fw-bold">Cadastro</h4>
          <form action="/form-cadastro" method="POST"> 
             <div class="mb-3">
+                
                 <label for="nome" class="form-label fw-semibold">Nome Completo</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo" required
+                    value="<%= typeof oldData !== 'undefined' ? oldData.nome : '' %>"
+>
+
+                <p class="text-danger fw-bold">
+                    <% 
+                    
+                    if (typeof erros !== 'undefined') { 
+                        
+                        
+                        const nameError = erros.find(err => err.path === 'nome');
+                        
+                        if (nameError) { 
+                            
+                            %>
+                            <%= nameError.msg %> 
+                        <% } 
+                    } 
+                    %>
+                </p>
             </div>
 
             <div class="mb-3">
                 <label for="email" class="form-label fw-semibold">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@dominio.com" required>
+                <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@dominio.com" required 
+                    value="<%= typeof oldData !== 'undefined' ? oldData.email : '' %>"
+                    >
+                <p class="text-danger fw-bold">
+                    <% 
+                    if(typeof erros !== 'undefined'){
+
+                        const emailError = erros.find(err => err.path === 'email');
+
+                            if(emailError){
+                                %>
+                                <%= emailError.msg %>
+                            <%
+                            }
+                        
+                        }  
+                %>
+            </p>
+
             </div>
 
             <div class="mb-3">
                 <label for="senha" class="form-label fw-semibold">Senha</label>
                 <input type="password" class="form-control" id="senha" name="senha" placeholder="Crie uma senha segura" required>
+
+                <p class="text-danger fw-bold">
+                    <%
+                        if( typeof erros !== 'undefined'){
+
+                        const passwordError = erros.find( err => err.path === 'senha');
+
+                            if(passwordError){
+                                %>
+                                <%= passwordError.msg %>
+                            <%
+                            }
+                        
+                    }
+                    %>
+                </p>
             </div>
 
             <div class="mb-3">
                 <label for="confirmacao_senha" class="form-label fw-semibold">Confirmar Senha</label>
                 <input type="password" class="form-control" id="confirmacao_senha" name="confirmacao_senha" placeholder="Repita a senha" required>
+                
+                <p class="text-danger fw-bold">
+                    <%
+                        if( typeof erros !== 'undefined'){
+
+                        const confirmPasswordError = erros.find (err => err.path === 'confirmacao_senha');
+
+                        if(confirmPasswordError){
+                            %>
+                            <%= confirmPasswordError.msg %>
+                        <%
+                        }
+                    }
+                    %>
+                </p>
             </div>
             
             <div class="form-check mb-3">
@@ -53,6 +122,21 @@
                 <label class="form-check-label text-muted" for="termos">
                     Concordo com os <a href="#" class="text-primary text-decoration-none">termos de uso</a>
                 </label>
+
+                <p class="text-danger fw-bold">
+
+                    <% if(typeof erros !== 'undefined'){
+
+                        const termoError = erros.find(err => err.path === 'termos');
+
+                        if(termoError){
+                            %>
+                            <%= termoError.msg %>
+                        <%
+                        }
+
+                    } %>
+                </p>
             </div>
 
             <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Cadastrar</button>

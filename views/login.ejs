@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Login - Dev Q&A Hub</title>
+
+   
 </head>
 <body>
-    Cadastrado
+   
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold text-primary" href="index.html">Dev Q&A Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+   
+    <main class="container">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                <h5 class="mb-0">Acesse sua Conta</h5>
+            </div>
+            <div class="card-body p-4">
+                <form action="" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <small class="text-muted">Não tem uma conta? <a href="#" class="text-primary text-decoration-none">Cadastre-se</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    
+    <footer class="border-top py-4 mt-auto">
+        <div class="container text-center">
+            <p class="mb-1 text-muted">&copy; <span id="currentYear"></span> Dev Q&A Hub — Todos os direitos reservados.</p>
+            <a href="#" class="text-primary text-decoration-none me-3">Sobre</a>
+            <a href="#" class="text-primary text-decoration-none me-3">Contato</a>
+            <a href="#" class="text-primary text-decoration-none">Política de Privacidade</a>
+        </div>
+    </footer>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
