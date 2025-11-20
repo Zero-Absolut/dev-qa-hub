@@ -27,11 +27,41 @@
                 <h5 class="mb-0">Acesse sua Conta</h5>
             </div>
             <div class="card-body p-4">
-                <form action="" method="post">
+                <form action="/login" method="post">
+                   <p class="text-danger fw-bold">
+                        <%
+                        if( typeof erros !== 'undefined' && erros.length > 0){
+
+                        const emailError = erros.find( err => err.path === 'email');
+
+                            if(emailError){
+                                %>
+                                <%= emailError.msg %>
+                            <%
+                            }
+                        
+                    }
+                    %>
+
+                   </p>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
                     </div>
+
+                    <p class="text-danger fw-bold">
+                        <% if(typeof erros !== "undefined" && erros.length > 0){
+                            const passwordError = erros.find(err => err.path === 'password');
+
+                            if(passwordError){
+                                %>
+                                <%= passwordError.msg %>
+                            <%
+                            }
+                        }
+                        %>
+                    </p>
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Senha</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>

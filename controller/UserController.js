@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
-import { insertDataUser } from '../services/userServices.js';
+import { insertDataUser, loginUser } from '../services/userServices.js';
+
 
 export function DataUser(req, res) {
     const password = req.body.senha;
@@ -26,8 +27,24 @@ export function DataUser(req, res) {
         console.log(err);
         res.redirect('/erro');
     });
-
    
+}
 
-   
+
+export async function loginUserVerify(req, res){
+    const emailUser = req.body.email;
+    const password = req.body.password;
+    
+    const result = await loginUser(emailUser, password);
+
+    if(result.success === true){
+        req.session.userId = result.userId;
+        req.session.isAuthenticated = true;
+        console.log("certo");
+        return res.render('index');
+    }else{
+        console.log(result);
+
+        return res.render('login', {'msg': result.msg})
+    }
 }
