@@ -4,38 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Dev Q&A Hub</title>
+    <title>Dev Q&A Hub — Fazer Pergunta</title>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body {
+            background: #f1f5f9;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        /* HERO ASSIMÉTRICO */
+        .hero-section {
+            position: relative;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            left: -10%;
+            width: 130%;
+            height: 150px;
+            background: white;
+            transform: skewY(-8deg);
+            box-shadow: 0 -8px 25px rgba(0,0,0,0.2);
+        }
+
+        .hero-section h1 {
+            font-weight: 800;
+        }
+
+        /* FORM CARD MODERNO */
+        .ask-card {
+            margin-top: -60px;
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+            transform: skewX(-2deg);
+        }
+
+        .ask-card > * {
+            transform: skewX(2deg);
+        }
+
+        .ask-card label {
+            margin-top: 10px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .ask-card input,
+        .ask-card textarea {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            transition: .2s;
+            font-size: 1rem;
+        }
+
+        .ask-card input:focus,
+        .ask-card textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.3);
+        }
+
+        .ask-card textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-primary-mod {
+            background: var(--primary);
+            border: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .btn-primary-mod:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
+
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand fw-semibold text-primary" href="index.html">Dev Q&A Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
-    
-     <div class="container">
-        <div class="card">
-        <div class="card-header">
-                <h3>Realize uma pergunta</h3>
-        </div>
 
-        <div class="card-body">
-           
-            <form method="POST" class="form-control"  class="form-control" >
-                <label for="titulo">Título</label>
-                <input name="titulo" type="text" placeholder="Título" class="form-control">
-                <br>
-                <label for="pergunta">Perguntar</label>
-                <textarea name="pergunta" id="" placeholder="Perguntar" class="form-control" ></textarea>
-                <br>
-                <button class=" btn btn-success" >Enviar</button>
-            </form>
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Faça sua Pergunta</h1>
+            <p class="mt-2 fs-5">Compartilhe seu desafio. A comunidade ajuda você a encontrar a solução.</p>
         </div>
-        </div>      
+    </section>
+
+    <!-- FORMULÁRIO -->
+    <div class="container">
+        <div class="ask-card mt-5">
+            
+            <h3 class="fw-bold mb-3 text-dark">Detalhes da Pergunta</h3>
+
+            <form method="POST">
+
+                <label for="titulo">Título da Pergunta</label>
+                <input name="titulo" type="text" placeholder="Ex.: Como resolver erro CORS no React?" class="form-control">
+
+                <label for="pergunta" class="mt-3">Descreva seu Problema</label>
+                <textarea name="pergunta" placeholder="Explique o problema, mostre código e dê contexto..." class="form-control"></textarea>
+
+                <button class="btn-primary-mod mt-4">Enviar Pergunta</button>
+
+            </form>
+
+        </div>
     </div>
+
 </body>
 </html>

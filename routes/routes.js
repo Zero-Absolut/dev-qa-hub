@@ -2,6 +2,7 @@ import express from  'express';
 import * as validationMiddleware from '../middlewares/validationDataUser.js';
 import * as userDataRules from '../controller/UserController.js';
 import * as login from '../middlewares/loginUserValidator.js';
+import { requireLogin } from '../middlewares/sessionVerificarion.js';
 
 
 const route = express.Router();
@@ -10,9 +11,10 @@ const route = express.Router();
 route.get('/index', (req, res) => {
     res.render('index');
 })
-route.get('/perguntar', (req, res) => {
+route.get('/perguntar', requireLogin, (req, res) => {
+    
     res.render('perguntar');
-})
+});
 
 route.get('/form-cadastro', (req, res) => {
     res.render('form-cadastro');

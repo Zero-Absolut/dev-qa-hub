@@ -19,30 +19,30 @@ export async function insertDataUser(name, email, password){
 }
 
 export async function loginUser(email, password){
-        try{
-          const user = await Usuarios.findOne({
-                where:{email: email}
-                
-            });
+    try{
+        const user = await Usuarios.findOne({
+            where: { email: email },
+            attributes: ['id', 'nome', 'email', 'senha'] 
+        });
 
-            if(!user){
-                 console.log(user.senha)
-                return {'success': false, 'msg' : "Usuário ou senha incorretos."}
+        if (user) { 
 
-                
-                
-            }
-
-            //VERIFICAR O ERRO DE HASH DE SNHA NO CONTROLLER QUE IMPEDE DE VERIFICAR A SENHA CORRETAMENTE 
             const passwordChek = await bcrypt.compare(password, user.senha);
+            
+            if (passwordChek) {
 
-            if(passwordChek){
                 return {'success': true, 'user': user.id};
-            }else{
-                 
+            } else {
+
                 return {'success': false, 'msg': "Usuário ou senha incorretos."}
             }
-        }catch( error){
-            return {'success': false, 'msg': "Erro inesperado."}
+        } else {
+
+            return {'success': false, 'msg': "Usuário ou senha incorretos."}
         }
+        
+    } catch(error) {
+       
+        return {'success': false, 'msg': "Erro inesperado."}
+    }
 }

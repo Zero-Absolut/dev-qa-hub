@@ -38,10 +38,10 @@ export async function loginUserVerify(req, res){
     const result = await loginUser(emailUser, password);
 
     if(result.success === true){
-        req.session.userId = result.userId;
+        req.session.userId = result.user;
         req.session.isAuthenticated = true;
-        console.log("certo");
-        return res.render('index');
+     
+        return res.redirect('/index');
     }else{
         console.log(result);
 

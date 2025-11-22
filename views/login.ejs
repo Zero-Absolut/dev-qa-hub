@@ -3,82 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
     <title>Login - Dev Q&A Hub</title>
 
-   
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body {
+            background: #f1f5f9;
+            font-family: "Inter", sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        /* HERO ASSIMÉTRICO */
+        .hero-section {
+            position: relative;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            left: -10%;
+            width: 130%;
+            height: 150px;
+            background: white;
+            transform: skewY(-8deg);
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.18);
+        }
+
+        .hero-section h1 {
+            font-weight: 800;
+        }
+
+        /* LOGIN CARD */
+        .login-card {
+            margin-top: -60px;
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+            transform: skewX(-2deg);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-card > * {
+            transform: skewX(2deg);
+        }
+
+        .login-card h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .login-card input {
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            transition: .2s;
+        }
+
+        .login-card input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.3);
+        }
+
+        .btn-primary-mod {
+            background: var(--primary);
+            border: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .btn-primary-mod:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .error-msg {
+            color: #dc2626;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            background: white;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+        }
+    </style>
 </head>
+
 <body>
-   
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand fw-semibold text-primary" href="index.html">Dev Q&A Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
 
-   
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Bem-vindo de Volta</h1>
+            <p class="fs-5 mt-2">Acesse sua conta e continue compartilhando conhecimento</p>
+        </div>
+    </section>
+
+    <!-- LOGIN CARD -->
     <main class="container">
-        <div class="card">
-            <div class="card-header bg-primary text-white text-center">
-                <h5 class="mb-0">Acesse sua Conta</h5>
-            </div>
-            <div class="card-body p-4">
-                <form action="/login" method="post">
-                   <p class="text-danger fw-bold">
-                        <%
-                        if( typeof erros !== 'undefined' && erros.length > 0){
+        <div class="login-card">
 
-                        const emailError = erros.find( err => err.path === 'email');
+            <h4 class="text-dark text-center">Acesse sua Conta</h4>
 
-                            if(emailError){
-                                %>
+            <form action="/login" method="post">
+
+                <!-- ERRO EMAIL -->
+                <p class="error-msg">
+                    <%
+                        if (typeof erros !== 'undefined' && erros.length > 0) {
+                            const emailError = erros.find(e => e.path === 'email');
+                            if (emailError) { %>
                                 <%= emailError.msg %>
-                            <%
-                            }
-                        
-                    }
-                    %>
-
-                   </p>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
-                    </div>
-
-                    <p class="text-danger fw-bold">
-                        <% if(typeof erros !== "undefined" && erros.length > 0){
-                            const passwordError = erros.find(err => err.path === 'password');
-
-                            if(passwordError){
-                                %>
-                                <%= passwordError.msg %>
-                            <%
-                            }
+                    <%      }
                         }
-                        %>
-                    </p>
+                    %>
+                </p>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Entrar</button>
-                    </div>
-                    <div class="text-center mt-3">
-                        <small class="text-muted">Não tem uma conta? <a href="#" class="text-primary text-decoration-none">Cadastre-se</a></small>
-                    </div>
-                </form>
-            </div>
+                <label for="email" class="form-label fw-semibold">E-mail</label>
+                <input type="email" class="form-control mb-3" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+
+                <!-- ERRO SENHA -->
+                <p class="error-msg">
+                    <% if (typeof erros !== "undefined" && erros.length > 0) {
+                        const passwordError = erros.find(err => err.path === 'password');
+                        if (passwordError) { %>
+                            <%= passwordError.msg %>
+                    <%  }
+                    } %>
+                </p>
+
+                <label for="password" class="form-label fw-semibold">Senha</label>
+                <input type="password" class="form-control mb-4" id="password" name="password" placeholder="Digite sua senha" required>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn-primary-mod">Entrar</button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <small class="text-muted">
+                        Não tem uma conta?  
+                        <a href="#" class="text-primary fw-semibold text-decoration-none">Cadastre-se</a>
+                    </small>
+                </div>
+            </form>
         </div>
     </main>
 
-    
-    <footer class="border-top py-4 mt-auto">
+    <!-- FOOTER -->
+    <footer class="py-4 mt-5">
         <div class="container text-center">
             <p class="mb-1 text-muted">&copy; <span id="currentYear"></span> Dev Q&A Hub — Todos os direitos reservados.</p>
             <a href="#" class="text-primary text-decoration-none me-3">Sobre</a>
@@ -89,7 +196,8 @@
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
+
 </body>
 </html>
