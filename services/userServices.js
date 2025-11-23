@@ -31,7 +31,7 @@ export async function loginUser(email, password){
             
             if (passwordChek) {
 
-                return {'success': true, 'user': user.id};
+                return {'success': true, 'user': user.id, 'userName': user.nome};
             } else {
 
                 return {'success': false, 'msg': "Usuário ou senha incorretos."}

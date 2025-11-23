@@ -39,6 +39,7 @@ export async function loginUserVerify(req, res){
 
     if(result.success === true){
         req.session.userId = result.user;
+        req.session.userName = result.userName;
         req.session.isAuthenticated = true;
      
         return res.redirect('/index');

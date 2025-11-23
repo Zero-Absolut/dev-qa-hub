@@ -2,14 +2,17 @@ import express from  'express';
 import * as validationMiddleware from '../middlewares/validationDataUser.js';
 import * as userDataRules from '../controller/UserController.js';
 import * as login from '../middlewares/loginUserValidator.js';
-import { requireLogin } from '../middlewares/sessionVerificarion.js';
+import { requireLogin , logout} from '../middlewares/sessionVerificarion.js';
 
 
 const route = express.Router();
 
 
 route.get('/index', (req, res) => {
-    res.render('index');
+    console.log('Conteúdo Atual da Sessão:', req.session);
+    res.render('index', { 
+        req: req 
+    });
 })
 route.get('/perguntar', requireLogin, (req, res) => {
     
@@ -23,9 +26,15 @@ route.get('/form-cadastro', (req, res) => {
 route.post('/form-cadastro', validationMiddleware.userValidationRules, validationMiddleware.validateCheck, userDataRules.DataUser);
 
 route.get('/login', (req, res) => {
+    
     res.render('login');
 })
 
 route.post('/login', login.loginValidationRules, login.validerLogin, userDataRules.loginUserVerify);
+
+route.post('/logout', logout, (req, res) => {
+
+    res.render('login');
+})
 
 export default route;

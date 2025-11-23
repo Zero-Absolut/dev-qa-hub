@@ -7,3 +7,15 @@ export function requireLogin(req, res, next){
         return res.redirect('/login'); 
     }
 }
+
+export function logout(req, res){
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Erro ao encerrar a sessão:', err);
+        }
+        
+        
+        res.redirect('/index'); 
+    });
+}
+

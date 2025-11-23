@@ -127,7 +127,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-semibold text-primary" href="#">Dev Q&A Hub</a>
+            <a class="navbar-brand fw-semibold text-primary" href="/index">Dev Q&A Hub</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -138,10 +138,29 @@
                     <button class="btn btn-outline-primary">Buscar</button>
                 </form>
 
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tags</a></li>
-                    <li class="nav-item ms-lg-3"><a class="btn btn-primary" href="#">Cadastrar</a></li>
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    
+                    
+                    
+                    
+                    <% if(req.session && req.session.isAuthenticated === true){  %>
+                        <li class="nav-item me-3 mt-2 mt-lg-0">
+                            <span class="navbar-text text-dark fw-semibold">
+                                Olá, <%= req.session.userName %>! 
+                            </span>
+                        </li>
+                        
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <form action="/logout" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-danger">Sair</button>
+                            </form>
+                        </li>
+                    <%} else { %>
+                        <li class="nav-item"><a class="nav-link active" href="/login">Login</a></li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a class="btn btn-primary" href="/form-cadastro">Cadastrar</a>
+                        </li>
+                    <%}%>
                 </ul>
             </div>
         </div>
@@ -154,7 +173,7 @@
             <p class="fs-5 mt-2">A comunidade para perguntas e respostas de desenvolvedores</p>
 
             <div class="mt-4">
-                <a href="#" class="btn btn-light btn-lg me-2">Fazer uma Pergunta</a>
+                <a href="/perguntar" class="btn btn-light btn-lg me-2">Fazer uma Pergunta</a>
                 <a href="#" class="btn btn-outline-light btn-lg">Explorar Tópicos</a>
             </div>
         </div>
