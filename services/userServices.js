@@ -1,6 +1,6 @@
 
 import bcrypt from 'bcrypt';
-import Usuarios from '../models/userModel.js';
+import {Usuarios, Perguntas} from '../models/userModel.js';
 
 export async function insertDataUser(name, email, password){
     try {
@@ -10,11 +10,27 @@ export async function insertDataUser(name, email, password){
             senha: password
         });
         
-        return { success: true };
+        return { 'success': true };
 
     } catch (err) {
         console.error(err);
         return {'success': false, 'msg': "Erro ao cadastrar usuário!!!"};
+    }
+}
+
+
+export async function insertPost(t, p) {
+    try{
+        await Perguntas.create({
+            pergunta: p,
+            title: t
+        });
+
+        return {'seccess': true};
+    } catch (err){
+        console.log(err);
+
+        return {'success': false, 'msgError': "Erro ao fazer pergunta"};
     }
 }
 

@@ -1,4 +1,7 @@
 import { body, validationResult } from "express-validator";
+import validator from "validator";
+
+
 //import { validateCheck } from "./validationDataUser";
 
 export const loginValidationRules = [
@@ -34,6 +37,22 @@ export function validerLogin (req, res, next){
         });
 }
 
+
+export function questionVerify(req, res, next){
+    const title = req.body.titulo;
+    const question = req.body.pergunta;
+
+    if (!validator.isEmpty(title) && !validator.isEmpty(question)) {
+    return next();
+        }
+        else{
+
+
+        req.session.Erros = {'msgErrorTitle': "Campo título não pode ser vazio", 'msgErrorQuestion': "campo de perguntas não pode ser vazio"};
+
+        return res.redirect('/perguntar');
+    }
+}
 
 
 

@@ -19,6 +19,8 @@ route.get('/perguntar', requireLogin, (req, res) => {
     res.render('perguntar');
 });
 
+route.post('/perguntar', requireLogin, login.questionVerify, userDataRules.insertPostUser);
+
 route.get('/form-cadastro', (req, res) => {
     res.render('form-cadastro');
 })

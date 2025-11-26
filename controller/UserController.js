@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { insertDataUser, loginUser } from '../services/userServices.js';
+import { insertDataUser, loginUser, insertPost } from '../services/userServices.js';
 
 
 export function DataUser(req, res) {
@@ -47,5 +47,22 @@ export async function loginUserVerify(req, res){
         console.log(result);
 
         return res.render('login', {'msg': result.msg})
+    }
+}
+
+export async function insertPostUser(req, res) {
+
+    const title = req.body.titulo;
+
+    const question = req.body.pergunta;
+
+
+
+    const postResult = insertPost(title, question);
+
+    if(postResult.success === true){
+        return res.redirect('/index');
+    }else{
+        return res.redirect('perguntar');
     }
 }
