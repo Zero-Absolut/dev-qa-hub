@@ -133,7 +133,8 @@
             
             <h3 class="fw-bold mb-3 text-dark">Detalhes da Pergunta</h3>
 
-            <form method="POST">
+            <form method="POST" action="/perguntar">
+
 
                 <label for="titulo">Título da Pergunta</label>
                 <input name="titulo" type="text" placeholder="Ex.: Como resolver erro CORS no React?" class="form-control">
@@ -141,12 +142,54 @@
                 <label for="pergunta" class="mt-3">Descreva seu Problema</label>
                 <textarea name="pergunta" placeholder="Explique o problema, mostre código e dê contexto..." class="form-control"></textarea>
 
-                <button class="btn-primary-mod mt-4">Enviar Pergunta</button>
+                <button type="submit" class="btn-primary-mod mt-4">Enviar Pergunta</button>
+
 
             </form>
 
         </div>
     </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <!-- ========================= MODAL DE ERRO — INÍCIO ========================= -->
+<% if (typeof erros !== "undefined") { %>
+
+<!-- Modal Bootstrap -->
+<div class="modal fade" id="errorModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">⚠ Erro ao enviar pergunta</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <% if (erros.msgErrorTitle) { %>
+          <p><strong>Título:</strong> <%= erros.msgErrorTitle %></p>
+        <% } %>
+
+        <% if (erros.msgErrorQuestion) { %>
+          <p><strong>Pergunta:</strong> <%= erros.msgErrorQuestion %></p>
+        <% } %>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Script para abrir automaticamente -->
+<script>
+  const modal = new bootstrap.Modal(document.getElementById('errorModal'));
+  modal.show();
+</script>
+
+<% } %>
+<!-- ========================= MODAL DE ERRO — FIM ========================= -->
+
 
 </body>
 </html>

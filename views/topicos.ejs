@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Explorar Tópicos — Dev Q&A Hub</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body { background: #f1f5f9; font-family: "Inter", sans-serif; }
+
+        .navbar { box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+
+        .hero-section { padding: 80px 0; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; text-align: center; }
+        .hero-section h1 { font-weight: 800; font-size: 2.5rem; }
+        .hero-section p { font-size: 1.2rem; }
+
+        .topic-card {
+            border: none;
+            border-radius: 14px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: 0.3s;
+            text-align: center;
+            color: var(--dark);
+            text-decoration: none;
+            display: block;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+            color: var(--primary);
+        }
+
+        .badge-tag-sidebar { text-decoration: none; color: var(--primary); font-weight: 600; }
+        .badge-tag-sidebar:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold text-primary" href="/index">Dev Q&A Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex mx-auto" style="max-width: 400px;" method="post" action="/pesquisar">
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar perguntas..." name="pesquisaPergunta">
+                    <button type="submit" class="btn btn-outline-primary">Buscar</button>
+                </form>
+                <!-- Navbar fixada sem lógica de sessão -->
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="/login">Login</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-primary" href="/form-cadastro">Cadastrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Explorar Tópicos</h1>
+            <p>Encontre perguntas por área de interesse ou tecnologia</p>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="container mt-5">
+        <div class="row">
+
+            <!-- GRID DE TÓPICOS -->
+            <div class="col-lg-8">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <a href="#" class="topic-card">
+                            <h5>#JavaScript</h5>
+                            <p class="text-muted">123 perguntas</p>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="topic-card">
+                            <h5>#Python</h5>
+                            <p class="text-muted">98 perguntas</p>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="topic-card">
+                            <h5>#React</h5>
+                            <p class="text-muted">76 perguntas</p>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="topic-card">
+                            <h5>#NodeJS</h5>
+                            <p class="text-muted">54 perguntas</p>
+                        </a>
+                    </div>
+                    <!-- Você pode duplicar ou substituir com dados reais futuramente -->
+                </div>
+            </div>
+
+            <!-- SIDEBAR POPULAR -->
+            <div class="col-lg-4">
+                <div class="card sidebar-card mb-4 mt-lg-0">
+                    <div class="card-header bg-primary text-white fw-semibold">Tópicos Populares</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="#" class="badge-tag-sidebar">#JavaScript</a>
+                            <span class="badge bg-light text-dark">508</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="#" class="badge-tag-sidebar">#Python</a>
+                            <span class="badge bg-light text-dark">312</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="#" class="badge-tag-sidebar">#React</a>
+                            <span class="badge bg-light text-dark">156</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="#" class="badge-tag-sidebar">#NodeJS</a>
+                            <span class="badge bg-light text-dark">78</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <a href="#" class="badge-tag-sidebar">#CSS</a>
+                            <span class="badge bg-light text-dark">52</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-5 py-4 text-center border-top">
+        <p class="mb-1 text-muted">&copy; <span id="currentYear"></span> Dev Q&A Hub — Todos os direitos reservados.</p>
+        <a href="#" class="text-primary text-decoration-none me-3">Sobre</a>
+        <a href="#" class="text-primary text-decoration-none me-3">Contato</a>
+        <a href="#" class="text-primary text-decoration-none">Política de Privacidade</a>
+    </footer>
+
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -54,6 +54,7 @@ const port = 3000;
 app.use('/', authRoutes);
 
 
+
 app.listen(port, () => {
     console.log(`servidor rodando na porta: ${port}`);
 })

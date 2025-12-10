@@ -3,21 +3,21 @@ import * as validationMiddleware from '../middlewares/validationDataUser.js';
 import * as userDataRules from '../controller/UserController.js';
 import * as login from '../middlewares/loginUserValidator.js';
 import { requireLogin , logout} from '../middlewares/sessionVerificarion.js';
+import { indexController, searchQuestion, getSidebarTopics } from '../controller/homeController.js';
 
 
 const route = express.Router();
 
 
-route.get('/index', (req, res) => {
-    console.log('Conteúdo Atual da Sessão:', req.session);
-    res.render('index', { 
-        req: req 
-    });
-})
+route.get('/index', indexController);
+
 route.get('/perguntar', requireLogin, (req, res) => {
+    const erros = req.session.Erros; // pega o erro da session
+    req.session.Erros = undefined;   // limpa para não repetir o modal
     
-    res.render('perguntar');
+    res.render('perguntar', { erros });     
 });
+
 
 route.post('/perguntar', requireLogin, login.questionVerify, userDataRules.insertPostUser);
 
@@ -36,7 +36,19 @@ route.post('/login', login.loginValidationRules, login.validerLogin, userDataRul
 
 route.post('/logout', logout, (req, res) => {
 
-    res.render('login');
+    res.redirect('login');
 })
+
+route.post('/pesquisar', searchQuestion);
+
+route.get('/viewPerguntas', (req, res)=> {
+    res.render('viewPerguntas');
+})
+
+route.get('/topicos', (req, res) => {
+    res.render('topicos');
+})
+
+route.get('/detalhesPergunta', getSidebarTopics);
 
 export default route;

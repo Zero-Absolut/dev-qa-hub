@@ -1,0 +1,130 @@
+<!-- Salvar como detalhesPergunta.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Pergunta — Dev Q&A Hub</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #0ea5e9;
+            --dark: #0f172a;
+            --light: #f8fafc;
+        }
+
+        body { background: #f1f5f9; font-family: "Inter", sans-serif; }
+
+        .navbar { box-shadow: 0 2px 15px rgba(0,0,0,0.06); }
+
+        .question-card, .answer-card {
+            border: none;
+            border-radius: 14px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .question-card:hover, .answer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .answer-card small { color: #6b7280; }
+        .answer-form textarea { resize: none; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-semibold text-primary" href="/index">Dev Q&A Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="/login">Login</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0"><a class="btn btn-primary" href="/form-cadastro">Cadastrar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section text-center py-5" style="background: linear-gradient(135deg, var(--primary), var(--accent)); color: white;">
+        <div class="container">
+            <h1>Detalhes da Pergunta</h1>
+            <p class="fs-5 mt-2">Confira a pergunta e as respostas da comunidade</p>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="container my-5">
+        <div class="row">
+
+            <!-- PERGUNTA -->
+            <div class="col-lg-8">
+                <div class="question-card">
+                    <h3>Título da Pergunta</h3>
+                    <p>Conteúdo completo da pergunta feito pelo usuário, explicando dúvidas ou problemas.</p>
+                    <small>Postada por Nome do Usuário em 10/12/2025</small>
+                </div>
+
+                <!-- RESPOSTAS -->
+                <h4>Respostas</h4>
+
+                <div class="answer-card">
+                    <p>Resposta de um usuário com a solução ou sugestão.</p>
+                    <small>Respondida por Usuário A em 10/12/2025</small>
+                </div>
+
+                <div class="answer-card">
+                    <p>Outra resposta da comunidade.</p>
+                    <small>Respondida por Usuário B em 10/12/2025</small>
+                </div>
+
+                <!-- FORMULÁRIO PARA NOVA RESPOSTA -->
+                <div class="card answer-form p-3 mt-4">
+                    <h5>Adicionar uma resposta</h5>
+                    <form>
+                        <textarea class="form-control mb-2" rows="4" placeholder="Escreva sua resposta..."></textarea>
+                        <button type="submit" class="btn btn-primary">Enviar Resposta</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-4">
+                <div class="card sidebar-card mb-4">
+                    <div class="card-header bg-primary text-white fw-semibold">Perguntas Recentes</div>
+
+                    <% pergunta.forEach(topic => { %>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#" class="text-primary text-decoration-none"> <%= topic.title %></a></li>
+                    </ul>
+                    
+                    <% }) %>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-5 py-4 text-center border-top">
+        <p class="mb-1 text-muted">&copy; <span id="currentYear"></span> Dev Q&A Hub — Todos os direitos reservados.</p>
+        <a href="#" class="text-primary text-decoration-none me-3">Sobre</a>
+        <a href="#" class="text-primary text-decoration-none me-3">Contato</a>
+        <a href="#" class="text-primary text-decoration-none">Política de Privacidade</a>
+    </footer>
+
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

@@ -133,9 +133,9 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="d-flex mx-auto" style="max-width: 400px;">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar perguntas...">
-                    <button class="btn btn-outline-primary">Buscar</button>
+                <form class="d-flex mx-auto" style="max-width: 400px;" method="post" action="/pesquisar">
+                    <input class="form-control me-2" type="search" placeholder="Pesquisar perguntas..." name="pesquisaPergunta">
+                    <button type="submit" class="btn btn-outline-primary">Buscar</button>
                 </form>
 
                 <ul class="navbar-nav ms-auto align-items-lg-center">
@@ -174,27 +174,29 @@
 
             <div class="mt-4">
                 <a href="/perguntar" class="btn btn-light btn-lg me-2">Fazer uma Pergunta</a>
-                <a href="#" class="btn btn-outline-light btn-lg">Explorar Tópicos</a>
+                <a href="/topicos" class="btn btn-outline-light btn-lg">Explorar Tópicos</a>
             </div>
         </div>
     </section>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="container mt-5">
-        <div class="row">
+           <main class="container mt-5">
+    <div class="row">
 
-            <!-- LISTA DE PERGUNTAS -->
-            <div class="col-lg-8">
-                <h2 class="mb-4 fw-bold">Perguntas Recentes</h2>
+        <!-- LISTA DE PERGUNTAS -->
+        <div class="col-lg-8">
+            <h2 class="mb-4 fw-bold">Perguntas Recentes</h2>
 
-                <!-- CARD 1 -->
+            <% perguntas.forEach(pergunta => { %>
                 <div class="card question-card mb-3">
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5><a href="#" class="text-primary text-decoration-none">Como corrigir um erro CORS no React?</a></h5>
-                            <span class="badge bg-success rounded-pill question-count">508</span>
+                            <h5>
+                                <a href="#" class="text-primary text-decoration-none">
+                                    <%= pergunta.title %>
+                                </a>
+                            </h5>
                         </div>
-                        <p class="text-muted">Estou tendo problemas para fazer requisições da minha aplicação React...</p>
+                        <p class="text-muted"><%= pergunta.pergunta %></p>
                         <div>
                             <a href="#" class="badge-tag">#react</a>
                             <a href="#" class="badge-tag">#cors</a>
@@ -202,70 +204,41 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- CARD 2 -->
-                <div class="card question-card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5><a href="#" class="text-primary text-decoration-none">Melhores práticas para proteger uma API Node.js?</a></h5>
-                            <span class="badge bg-success rounded-pill question-count">18</span>
-                        </div>
-                        <p class="text-muted">Quais middlewares de segurança são essenciais?</p>
-                        <div>
-                            <a href="#" class="badge-tag">#security</a>
-                            <a href="#" class="badge-tag">#nodejs</a>
-                            <a href="#" class="badge-tag">#express</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="card question-card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5><a href="#" class="text-primary text-decoration-none">Diferença entre 'let' e 'const'?</a></h5>
-                            <span class="badge bg-success rounded-pill question-count">36</span>
-                        </div>
-                        <p class="text-muted">Ainda me confundo sobre a diferença real entre eles...</p>
-                        <div>
-                            <a href="#" class="badge-tag">#javascript</a>
-                            <a href="#" class="badge-tag">#conceitos</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SIDEBAR -->
-            <div class="col-lg-4">
-                <div class="card sidebar-card mb-4 mt-lg-5">
-                    <div class="card-header bg-primary text-white fw-semibold">Tags em Tendência</div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <a href="#" class="badge-tag-sidebar">#javascript</a>
-                            <span class="badge bg-light text-dark">508</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <a href="#" class="badge-tag-sidebar">#python</a>
-                            <span class="badge bg-light text-dark">312</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <a href="#" class="badge-tag-sidebar">#html-css</a>
-                            <span class="badge bg-light text-dark">156</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <a href="#" class="badge-tag-sidebar">#terminal</a>
-                            <span class="badge bg-light text-dark">78</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <a href="#" class="badge-tag-sidebar">#databases</a>
-                            <span class="badge bg-light text-dark">52</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+            <% }) %>
         </div>
-    </main>
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+            <div class="card sidebar-card mb-4 mt-lg-5">
+                <div class="card-header bg-primary text-white fw-semibold">Tags em Tendência</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="#" class="badge-tag-sidebar">#javascript</a>
+                        <span class="badge bg-light text-dark">508</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="#" class="badge-tag-sidebar">#python</a>
+                        <span class="badge bg-light text-dark">312</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="#" class="badge-tag-sidebar">#html-css</a>
+                        <span class="badge bg-light text-dark">156</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="#" class="badge-tag-sidebar">#terminal</a>
+                        <span class="badge bg-light text-dark">78</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="#" class="badge-tag-sidebar">#databases</a>
+                        <span class="badge bg-light text-dark">52</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</main>
+
 
     <!-- FOOTER -->
     <footer class="mt-5 py-4 text-center border-top">

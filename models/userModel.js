@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 import conn from "../database/database.js";
 
-
 export const Usuarios = conn.define('usuarios',{
     nome:{
         type: Sequelize.STRING,
@@ -17,7 +16,6 @@ export const Usuarios = conn.define('usuarios',{
     }
 });
 
-
 export const Perguntas = conn.define('perguntas', {
     pergunta:{
         type: Sequelize.STRING,
@@ -26,21 +24,26 @@ export const Perguntas = conn.define('perguntas', {
     title:{
         type: Sequelize.STRING,
         allowNull:false
+    },
+    usuarioId:{
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 });
 
+// definindo o relacionamento
+Usuarios.hasMany(Perguntas, { foreignKey: 'usuarioId' });
+Perguntas.belongsTo(Usuarios, { foreignKey: 'usuarioId' });
+
 
 Perguntas.sync({force:false}).then(() => {
-
+    console.log("Tabela Perguntas criada/sincronizada");
 }).catch((err) => {
-    console.log("erro ao criar tabela perguntas");
-})
-
-
-// force: false ele não vai criar a tabela caso ela já exista 
-Usuarios.sync({force: false}).then(() => {
-
-}).catch((err) => {
-    console.log("Erro ao criar tabela");
+    console.log("Erro ao criar tabela perguntas", err);
 });
 
+Usuarios.sync({force: false}).then(() => {
+    console.log("Tabela Usuarios criada/sincronizada");
+}).catch((err) => {
+    console.log("Erro ao criar tabela usuarios", err);
+});

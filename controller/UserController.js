@@ -56,13 +56,18 @@ export async function insertPostUser(req, res) {
 
     const question = req.body.pergunta;
 
+    const idUserQuestion = req.session.userId;
 
 
-    const postResult = insertPost(title, question);
+
+    const postResult = await insertPost(title, question, idUserQuestion);
+
+
+    console.log("Resultado do insert:", postResult);
 
     if(postResult.success === true){
         return res.redirect('/index');
     }else{
-        return res.redirect('perguntar');
+        return res.redirect('/perguntar');
     }
 }

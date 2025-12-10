@@ -39,6 +39,7 @@ export function validerLogin (req, res, next){
 
 
 export function questionVerify(req, res, next){
+    
     const title = req.body.titulo;
     const question = req.body.pergunta;
 
@@ -49,7 +50,8 @@ export function questionVerify(req, res, next){
 
 
         req.session.Erros = {'msgErrorTitle': "Campo título não pode ser vazio", 'msgErrorQuestion': "campo de perguntas não pode ser vazio"};
-
+            console.log(req.session.Erros);
+            
         return res.redirect('/perguntar');
     }
 }

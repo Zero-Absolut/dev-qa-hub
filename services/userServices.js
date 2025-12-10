@@ -19,14 +19,17 @@ export async function insertDataUser(name, email, password){
 }
 
 
-export async function insertPost(t, p) {
+export async function insertPost(t, p, u) {
     try{
+        
+
         await Perguntas.create({
             pergunta: p,
-            title: t
+            title: t,
+            usuarioId: u
         });
 
-        return {'seccess': true};
+        return {'success': true};
     } catch (err){
         console.log(err);
 
