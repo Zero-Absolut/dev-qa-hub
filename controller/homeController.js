@@ -1,4 +1,4 @@
-import { getLastQuestions, getQuestionFilter } from "../services/questionServices.js";
+import { getLastQuestions, getQuestionFilter, oneQuestion } from "../services/questionServices.js";
 
 
 export async function indexController(req, res) {
@@ -36,17 +36,40 @@ export async function searchQuestion(req, res) {
 }
 
 
-export async function getSidebarTopics(req, res) {
-    
+export async function getSidebarTopics(req, res, next) {
     try {
-        const getSidebarResult = await getLastQuestions();
-        
-        console.log(getSidebarResult);
+        const topics = await getLastQuestions(); 
+        req.sidebarTopics = topics;             
+        next(); 
 
-        res.render('detalhesPergunta', {pergunta: getSidebarResult});
+    } catch (err) {
+        console.error("Erro ao carregar sidebar:", err);
+        req.sidebarTopics = []; 
+        next();
+    }
+}
+
+
+export async function pQuestions(req, res) {
+
+    try{
+            const id = req.query.id;
+            if(!id){
+               return res.redirect('/index');
+
+            }
+            const pQuestion = await oneQuestion(id);
+
+            if(!pQuestion){
+               return res.render('detalhesPergunta', {perguntaP: null, msgErro: "Pergunta não encontrada", sidebarTopics:req.sidebarTopics});
+            }
+            console.log(pQuestion, req.sidebarTopics);
+
+           return res.render('detalhesPergunta', {perguntaP: pQuestion, sidebarTopics:req.sidebarTopics});
 
     }catch(err){
-        console.error("Erro ao processar busca", err);
-        res.render('detalhesPergunta', {pergunta: [], msgSideError: "Erro ao carregar tópico."});
+        console.error("Erro inesperado ao consultar pergunta", err);
+
+       return res.redirect('/index');
     }
 }

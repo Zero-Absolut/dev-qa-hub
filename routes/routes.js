@@ -3,7 +3,7 @@ import * as validationMiddleware from '../middlewares/validationDataUser.js';
 import * as userDataRules from '../controller/UserController.js';
 import * as login from '../middlewares/loginUserValidator.js';
 import { requireLogin , logout} from '../middlewares/sessionVerificarion.js';
-import { indexController, searchQuestion, getSidebarTopics } from '../controller/homeController.js';
+import { indexController, searchQuestion, getSidebarTopics, pQuestions } from '../controller/homeController.js';
 
 
 const route = express.Router();
@@ -42,13 +42,13 @@ route.post('/logout', logout, (req, res) => {
 route.post('/pesquisar', searchQuestion);
 
 route.get('/viewPerguntas', (req, res)=> {
-    res.render('viewPerguntas');
+    
 })
 
 route.get('/topicos', (req, res) => {
-    res.render('topicos');
+    res.render('topicos', { req });
 })
 
-route.get('/detalhesPergunta', getSidebarTopics);
+route.get('/detalhesPergunta', getSidebarTopics, pQuestions);
 
 export default route;

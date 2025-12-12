@@ -69,9 +69,17 @@
             <!-- PERGUNTA -->
             <div class="col-lg-8">
                 <div class="question-card">
-                    <h3>Título da Pergunta</h3>
-                    <p>Conteúdo completo da pergunta feito pelo usuário, explicando dúvidas ou problemas.</p>
-                    <small>Postada por Nome do Usuário em 10/12/2025</small>
+                    <h3><%= perguntaP.title %></h3>
+                    <p><%= perguntaP.pergunta %></p>
+                    <small class="text-muted d-block mt-2">
+                        Postada por <span class="fw-semibold"><%= perguntaP.usuario.nome %></span> —
+                        <%= new Date(perguntaP.createdAt).toLocaleDateString('pt-BR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                        }) %>
+                    </small>
+
                 </div>
 
                 <!-- RESPOSTAS -->
@@ -102,7 +110,7 @@
                 <div class="card sidebar-card mb-4">
                     <div class="card-header bg-primary text-white fw-semibold">Perguntas Recentes</div>
 
-                    <% pergunta.forEach(topic => { %>
+                    <% sidebarTopics.forEach(topic => { %>
 
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><a href="#" class="text-primary text-decoration-none"> <%= topic.title %></a></li>

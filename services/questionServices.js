@@ -32,7 +32,7 @@ export async function getQuestionFilter(filter) {
                     { pergunta: { [Op.like]: `%${filter}%` } }
                 ]
             },
-            include: [{
+            include: [{ 
                 model: Usuarios,        // incluo o usuário que fez a pergunta
                 attributes: ['nome']    // só quero o nome
             }],
@@ -43,5 +43,28 @@ export async function getQuestionFilter(filter) {
     } catch (err) {
         console.error("Erro ao fazer consulta.", err); // log de erro
         return []; // retorno um array vazio se algo der errado
+    }
+}
+
+
+export async function oneQuestion(id) {
+    try {
+        const question = await Perguntas.findOne({
+            where:
+                {id: id},
+                include: [
+                {
+                    model: Usuarios,
+                    attributes: ['id', 'nome', 'email']
+                }
+            ]
+            
+        })
+
+        return question;
+
+    }catch(err){
+        console.error("Erro ao fazer busca", err)
+        return null;
     }
 }

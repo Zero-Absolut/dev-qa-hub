@@ -142,7 +142,7 @@
                     
                     
                     
-                    
+                     
                     <% if(req.session && req.session.isAuthenticated === true){  %>
                         <li class="nav-item me-3 mt-2 mt-lg-0">
                             <span class="navbar-text text-dark fw-semibold">
@@ -191,9 +191,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h5>
-                                <a href="#" class="text-primary text-decoration-none">
+                                <a href="/detalhesPergunta?id=<%= pergunta.id %>" 
+                                    class="text-primary text-decoration-none">
                                     <%= pergunta.title %>
                                 </a>
+
                             </h5>
                         </div>
                         <p class="text-muted"><%= pergunta.pergunta %></p>
