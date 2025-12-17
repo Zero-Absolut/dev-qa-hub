@@ -21,7 +21,7 @@ export async function searchQuestion(req, res) {
 
     try {
         const filterSan = await getQuestionFilter(filter);
-        console.log(filterSan);
+        
         res.render('viewPerguntas', {
             perguntasBuscadas: filterSan,
             msgErroPesquisa: null 
@@ -51,25 +51,32 @@ export async function getSidebarTopics(req, res, next) {
 
 
 export async function pQuestions(req, res) {
+    try {
+        const id = req.query.id;
 
-    try{
-            const id = req.query.id;
-            if(!id){
-               return res.redirect('/index');
+        if (!id) {
+            return res.redirect('/index');
+        }
 
-            }
-            const pQuestion = await oneQuestion(id);
+        const pQuestion = await oneQuestion(id);
 
-            if(!pQuestion){
-               return res.render('detalhesPergunta', {perguntaP: null, msgErro: "Pergunta não encontrada", sidebarTopics:req.sidebarTopics});
-            }
-            console.log(pQuestion, req.sidebarTopics);
+        if (!pQuestion) {
+            return res.render('detalhesPergunta', {
+                perguntaP: null,
+                msgErro: "Pergunta não encontrada",
+                sidebarTopics: req.sidebarTopics,
+                session: req.session
+            });
+        }
 
-           return res.render('detalhesPergunta', {perguntaP: pQuestion, sidebarTopics:req.sidebarTopics});
+        return res.render('detalhesPergunta', {
+            perguntaP: pQuestion,
+            sidebarTopics: req.sidebarTopics,
+            session: req.session
+        });
 
-    }catch(err){
+    } catch (err) {
         console.error("Erro inesperado ao consultar pergunta", err);
-
-       return res.redirect('/index');
+        return res.redirect('/index');
     }
 }

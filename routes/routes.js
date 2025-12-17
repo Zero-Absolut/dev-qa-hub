@@ -51,4 +51,6 @@ route.get('/topicos', (req, res) => {
 
 route.get('/detalhesPergunta', getSidebarTopics, pQuestions);
 
+
+
 export default route;
